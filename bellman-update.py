@@ -65,7 +65,31 @@ for u in range(N):
 	print(U[u])
 
 
+## To find direction for each position
+## action = argmax[a] E(P(s`|s,a)*U(s`))
 
+act = [['-' for i in range(M)] for j in range(N)]
+
+for u in range(N):
+	for v in range(M):
+		if (u,v) in final:
+			continue
+		vmax = -1000
+		amax = (0,0)
+		for a in A:
+			val = exp_util(u,v,a)
+			print(u,v,a,val,vmax)
+			if val>vmax:
+				#print(u,v,val,vmax)
+				vmax = val
+				amax = a
+		act[u][v] = amax
+
+print('Action matrix:\n')
+
+for u in range(N):
+	print(act[u])
+			
 
 
 
